@@ -1,5 +1,5 @@
-export const FONTS_SIZES = {
-	regular: "16px",
+export const FONT_SIZES = {
+  regular: '16px',
 };
 
-export type TFontSizes = keyof typeof FONTS_SIZES;
+export type TFontSize = keyof typeof FONT_SIZES;

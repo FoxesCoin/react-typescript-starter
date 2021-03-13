@@ -1,6 +1,59 @@
-# Getting Started with Create React App
+# Getting Started with React-Typescript Starter
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## What we use
+
+- styled-components - Popular library from styled React components
+- react-router - Library from mapping in project
+- Prettier - Code-formatter
+- ESLint - Code checker
+
+### I recommend use inside VS Code [Fira Code](https://github.com/tonsky/FiraCode) font. It will new great experience
+
+## VS Code required extensions
+
+- [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [vscode-styled-components](https://marketplace.visualstudio.com/items?itemName=jpoissonnier.vscode-styled-components)
+- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+
+In side bare found Setting point and found this point.
+![Setting location](md/image/VSCode_setting.png)
+
+In open json file add this text. It help with extensions setting.
+
+- ESLint plugin setting from found location .eslintrc
+
+```json
+"eslint.workingDirectories": [
+  {
+    "mode": "auto"
+  }
+],
+```
+
+- Prettier setting what enable formate code every time on save file.
+
+```json
+"editor.codeActionsOnSave": {
+  "source.fixAll": true,
+},
+
+"[javascript]": {
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true
+},
+
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+"prettier.useTabs": true,
+```
+
+### Optional VS Code extensions
+
+- [Bracket Pair Colorizer 2](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer-2) - pretty style from bracket
+- [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight) - highlight web colors in your editor.
+- [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow) - a simple extension to make indentation more readable
 
 ## Available Scripts
 

@@ -1,8 +1,8 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from 'styled-components';
 
-import { COLORS } from "./colors";
-import { FONTS_SIZES } from "./font-sizes";
-import { importFont } from "./fonts";
+import { COLORS } from './colors';
+import { FONT_SIZES } from './font-sizes';
+import { FONTS, importFont } from './fonts';
 
 export const GlobalStyles = createGlobalStyle`
 body,
@@ -10,9 +10,12 @@ html,
 #root {
   width: 100%;
   height: 100%;
+}
+
+#root {
   color: ${COLORS.black};
-  font-size: ${FONTS_SIZES.regular};
-  font-family: Roboto-Bold;
+  font-size: ${FONT_SIZES.regular};
+  font-family: ${FONTS.regular};
 }
 
 *, *::before, *::after {
@@ -22,6 +25,5 @@ html,
   color: inherit;
 }
 
-${importFont("Roboto-Bold")}
-${importFont("Roboto-Regular")}
+${Object.values(FONTS).map((font) => importFont(font))}
 `;

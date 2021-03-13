@@ -1,16 +1,17 @@
-import RobotoBold from "../assets/fonts/Roboto-Bold.woff";
-import RobotoRegular from "../assets/fonts/Roboto-Regular.woff";
+import { css } from 'styled-components';
 
 export const FONTS = <const>{
-	"Roboto-Bold": RobotoBold,
-	"Roboto-Regular": RobotoRegular,
+  bold: 'Roboto-Bold',
+  regular: 'Roboto-Regular',
 };
 
-export const importFont = (font: keyof typeof FONTS) =>
-	`@font-face {
-    font-family: "${font}";
-    src: url(${FONTS[font]}) format("woff");
-  }
-`;
+export const importFont = (font: string) =>
+  css`
+    @font-face {
+      font-family: '${font}';
+      src: url(${require(`../assets/fonts/${font}.woff`).default})
+        format('woff');
+    }
+  `;
 
 export type TFont = keyof typeof FONTS;

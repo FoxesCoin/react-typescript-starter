@@ -1,7 +1,7 @@
 export const COLORS = <const>{
-	black: "#282828",
+  black: '#282828',
 
-	white: "#fff",
+  white: '#fff',
 };
 
 export type TColor = keyof typeof COLORS;

@@ -1,10 +1,18 @@
-import React from "react";
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { GlobalStyles } from "style/global";
+import { ROUTES } from 'constants/router';
+
+import { GlobalStyles } from 'style/global';
+import '../../style/reset.css';
 
 export const App = () => (
-	<>
-		<GlobalStyles />
-		Some text from test
-	</>
+  <>
+    <GlobalStyles />
+    <Router>
+      <Switch>
+        <Route path={ROUTES.START} />
+      </Switch>
+    </Router>
+  </>
 );
