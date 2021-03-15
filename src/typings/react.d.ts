@@ -1,4 +1,4 @@
-import { FC, ReactChild } from 'react';
+import { FC, ReactNode } from 'react';
 
 interface IComponent {
   className?: string;
@@ -7,8 +7,8 @@ interface IComponent {
 
 interface IWrapper {
   className?: string;
-  children: ReactChild;
+  children: ReactNode;
 }
 
-export type TComponent<T extends any> = FC<T & IComponent>;
-export type TWrapper<T extends any> = FC<T & IWrapper>;
+export type TComponent<T = {}> = FC<T & IComponent>;
+export type TWrapper<T = {}> = FC<T & IWrapper>;

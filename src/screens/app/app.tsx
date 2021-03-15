@@ -1,6 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
+import { LogIn } from 'screens/log-in';
+
 import { ROUTES } from 'constants/router';
 
 import { GlobalStyles } from 'style/global';
@@ -11,7 +13,7 @@ export const App = () => (
     <GlobalStyles />
     <Router>
       <Switch>
-        <Route path={ROUTES.START} />
+        <Route path={ROUTES.START} component={LogIn} />
       </Switch>
     </Router>
   </>
