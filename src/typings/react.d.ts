@@ -1,11 +1,11 @@
 import { FC, ReactNode } from 'react';
 
-interface IComponent {
+export interface IComponent {
   className?: string;
   children?: null;
 }
 
-interface IWrapper {
+export interface IWrapper {
   className?: string;
   children: ReactNode;
 }

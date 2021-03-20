@@ -1,7 +1,9 @@
-import React, { ChangeEventHandler, FC } from 'react';
+import { ChangeEventHandler } from 'react';
 import styled, { css } from 'styled-components';
 
 import { COLORS, hex2rgba } from 'style/colors';
+
+import { TComponent } from 'typings/react';
 
 interface ITextInputProps {
   value: string;
@@ -11,7 +13,6 @@ interface ITextInputProps {
   title?: string;
   type?: 'password' | 'email';
   placeholder?: string;
-  className?: string;
   disabled?: boolean;
   error?: boolean;
 }
@@ -48,7 +49,7 @@ const Label = styled.label<{ error?: boolean }>`
   }
 `;
 
-export const TextInput: FC<ITextInputProps> = (props) => {
+export const TextInput: TComponent<ITextInputProps> = (props) => {
   const {
     className,
     type,

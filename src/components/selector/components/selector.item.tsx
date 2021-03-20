@@ -1,14 +1,12 @@
-import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { useSelectorContext } from '../selector.context';
 
+import { TWrapper } from 'typings/react';
+
 interface ISelectorItemProps {
-  value: ISelectorValue;
-
-  className?: string;
-
-  children?: (isSelected: boolean) => ReactNode;
+  value: any;
+  isSelected: boolean;
 }
 
 const Item = styled.div`
@@ -16,11 +14,9 @@ const Item = styled.div`
   line-height: 1.25;
 `;
 
-export const SelectorItem = (props: ISelectorItemProps) => {
+export const SelectorItem: TWrapper<ISelectorItemProps> = (props) => {
   const { value, className, children } = props;
-  const { setValue, setOpen, value: selectValue } = useSelectorContext();
-
-  const isSelected = selectValue.label === value.label;
+  const { setValue, setOpen } = useSelectorContext();
 
   const handleClick = () => {
     setOpen(false);
@@ -29,7 +25,7 @@ export const SelectorItem = (props: ISelectorItemProps) => {
 
   return (
     <Item className={className} onClick={handleClick}>
-      {children ? children(isSelected) : value.label}
+      {children}
     </Item>
   );
 };

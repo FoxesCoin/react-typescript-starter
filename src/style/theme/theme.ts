@@ -1,7 +1,6 @@
-import { FONTS } from 'style/fonts';
 import styled from 'styled-components';
 
-import { cssFlex, cssFlexRow, cssText, cssTextStyled } from './theme.preset';
+import { cssFlex, cssFlexRow, cssText, cssTextStyled } from './theme.utils';
 
 export const Theme = {
   Paragraph: styled.p`
@@ -10,16 +9,7 @@ export const Theme = {
   Text: styled.span`
     ${cssText}
   `,
-  BoldParagraph: styled.p`
-    font-family: ${FONTS.bold};
-    ${cssTextStyled}
-  `,
-  BoldText: styled.span`
-    font-family: ${FONTS.bold};
-    ${cssTextStyled}
-  `,
   Title: styled.p`
-    font-family: ${FONTS.bold};
     text-align: center;
     width: 100%;
     ${cssTextStyled}
@@ -45,7 +35,6 @@ export const Theme = {
     align-items: center;
     ${(props) => props.isColumn && 'flex-direction: column;'}
   `,
-
   FullScreen: styled.div`
     width: 100%;
     height: 100%;

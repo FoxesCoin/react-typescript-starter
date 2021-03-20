@@ -1,23 +1,32 @@
+import styled from 'styled-components';
+
 import { TComponent } from 'typings/react';
 
 const getIcon = (path: string) => require(`../assets/icons/${path}.svg`);
 
 const PICTURE = {
   logo: getIcon('logo'),
+  cancel: getIcon('utils/cancel'),
+  arrowBottom: getIcon('utils/arrow-bottom'),
 };
 
 export type TPicture = keyof typeof PICTURE;
 
-interface IPictureProps {
+interface IPictureProps extends IImageSize {
   picture?: keyof typeof PICTURE;
-  size?: number;
-  width?: number;
-  height?: number;
   alt?: string;
+
+  onClick?: () => void;
 }
 
+const Wrapper = styled.div`
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 export const Picture: TComponent<IPictureProps> = (props) => {
-  const { className, picture, height, size, width, alt = '' } = props;
+  const { className, picture, height, size, width, alt = '', onClick } = props;
 
   if (!picture) {
     return null;
@@ -28,11 +37,8 @@ export const Picture: TComponent<IPictureProps> = (props) => {
   const imgWidth = width ?? size;
 
   return (
-    <img
-      alt={alt}
-      className={className}
-      style={{ width: imgWidth, height: imgHeight }}
-      src={img}
-    />
+    <Wrapper className={className} onClick={onClick}>
+      <img alt={alt} style={{ width: imgWidth, height: imgHeight }} src={img} />
+    </Wrapper>
   );
 };
