@@ -5,3 +5,7 @@ interface IImageSize {
 }
 
 type TSimple = string | number;
+
+type DeepPartial<T> = {
+  [P in keyof T]?: DeepPartial<T[P]>;
+};

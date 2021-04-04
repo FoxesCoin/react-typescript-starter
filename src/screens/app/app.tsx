@@ -5,7 +5,7 @@ import { LogIn } from 'screens/log-in';
 import { ROUTES } from 'constants/router';
 
 import { GlobalStyles } from 'style/global';
-import '../../style/reset.css';
+import 'style/reset.css';
 
 export const App = () => (
   <>

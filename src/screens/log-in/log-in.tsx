@@ -3,7 +3,7 @@ import { useState } from 'react';
 import {
     IImageSelectorItem, ImageSelector, MultiSimpleSelector, SimpleSelector
 } from 'components/selector';
-import { TextInput } from 'components/text-input';
+import { IconTextArea, IconTextInput, TextArea, TextInput } from 'components/text-input';
 
 import { updateSimpleArray } from 'services/utils';
 
@@ -18,6 +18,7 @@ export const LogIn: TComponent = (props) => {
     value: '',
     picture: 'logo',
   });
+  const [area, setArea] = useState('');
 
   const [simpleMultiple, setSimpleMultiple] = useState<string[]>([]);
   const updateSimple = (item: string) => {
@@ -46,7 +47,22 @@ export const LogIn: TComponent = (props) => {
         setValue={updateSimple}
         value={simpleMultiple}
       />
-      <TextInput title="Title" error value={data} setValue={setData} />
+      <TextInput title="Title" value={data} onChange={setData} />
+      <IconTextInput
+        title="Title"
+        value={data}
+        onChange={setData}
+        picture={{
+          image: 'logo',
+        }}
+      />
+      <TextArea value={area} onChange={setArea} title="Title" />
+      <IconTextArea
+        picture={{ image: 'logo' }}
+        value={area}
+        onChange={setArea}
+        title="Title"
+      />
     </div>
   );
 };

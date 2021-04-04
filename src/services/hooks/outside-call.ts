@@ -7,7 +7,7 @@ export const useOutsideAlerter = <T extends HTMLElement>(
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (ref.current && !ref.current?.contains(event.target as any)) {
+      if (ref.current && !ref.current?.contains(event.target as Node)) {
         callback();
       }
     };

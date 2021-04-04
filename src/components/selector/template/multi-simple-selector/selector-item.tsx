@@ -12,7 +12,7 @@ interface IItemProps<T extends TSimple> {
   setValue: (value: T) => void;
 }
 
-const Item = styled(Theme.FlexRow)`
+const Item = styled(Theme.GapRow)`
   padding: 0.25rem 0.5rem;
   border-radius: 1rem;
   border: 1px solid ${COLORS.black};

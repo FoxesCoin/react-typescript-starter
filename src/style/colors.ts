@@ -1,4 +1,5 @@
 export const COLORS = <const>{
+  transparent: 'transparent',
   black: '#282828',
 
   red: '#f00',
@@ -10,8 +11,8 @@ export const COLORS = <const>{
 
 export type TColor = keyof typeof COLORS;
 
-export const hex2rgba = (color: TColor, alpha: number) => {
+export const hex2rgba = (alpha: number, color?: string) => {
   const [red, green, blue] =
-    COLORS[color].match(/\w\w/g)?.map((x) => parseInt(x, 16)) ?? [];
+    color?.match(/\w\w/g)?.map((x) => parseInt(x, 16)) ?? [];
   return `rgba(${red},${green},${blue},${alpha})`;
 };

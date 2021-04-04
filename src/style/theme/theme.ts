@@ -1,6 +1,13 @@
 import styled from 'styled-components';
 
-import { cssFlex, cssFlexRow, cssText, cssTextStyled } from './theme.utils';
+import { cssFlexGap, cssFullScreen, cssText, cssTextStyled } from './theme.utils';
+
+const FlexCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
 
 export const Theme = {
   Paragraph: styled.p`
@@ -14,29 +21,22 @@ export const Theme = {
     width: 100%;
     ${cssTextStyled}
   `,
-  FullSizeFlex: styled.div`
-    height: 100%;
-    width: 100%;
+
+  GapRow: styled.div`
     display: flex;
-    ${cssFlex}
-  `,
-  Flex: styled.div`
-    display: flex;
-    ${cssFlex}
+    align-items: center;
+    ${cssFlexGap}
   `,
   FlexRow: styled.div`
     display: flex;
     align-items: center;
-    ${cssFlexRow}
+    justify-content: space-between;
   `,
-  FlexCenter: styled.div<{ isColumn?: boolean }>`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    ${(props) => props.isColumn && 'flex-direction: column;'}
-  `,
+  FlexCenter,
   FullScreen: styled.div`
-    width: 100%;
-    height: 100%;
+    ${cssFullScreen}
+  `,
+  FullScreenCenter: styled(FlexCenter)`
+    ${cssFullScreen}
   `,
 };

@@ -25,8 +25,12 @@ const INIT_VALUE: ISelectorContext = {
   isOpen: false,
   value: { label: '' },
 
-  setOpen: () => {},
-  setValue: () => {},
+  setOpen: () => {
+    return;
+  },
+  setValue: () => {
+    return;
+  },
 };
 
 const Context = createContext(INIT_VALUE);

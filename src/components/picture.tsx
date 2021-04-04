@@ -1,11 +1,17 @@
 import styled from 'styled-components';
 
+import { handleClickEvent } from 'services/utils';
+
 import { TComponent } from 'typings/react';
+
+import { Theme } from 'style/theme';
 
 const getIcon = (path: string) => require(`../assets/icons/${path}.svg`);
 
 const PICTURE = {
   logo: getIcon('logo'),
+
+  /* Utils */
   cancel: getIcon('utils/cancel'),
   arrowBottom: getIcon('utils/arrow-bottom'),
 };
@@ -19,14 +25,12 @@ interface IPictureProps extends IImageSize {
   onClick?: () => void;
 }
 
-const Wrapper = styled.div`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+const Wrapper = styled(Theme.FlexCenter)`
+  ${(props) => props.onClick && 'cursor: pointer;'}
 `;
 
 export const Picture: TComponent<IPictureProps> = (props) => {
-  const { className, picture, height, size, width, alt = '', onClick } = props;
+  const { className, picture, height, size, width, onClick, alt = '' } = props;
 
   if (!picture) {
     return null;
@@ -36,9 +40,24 @@ export const Picture: TComponent<IPictureProps> = (props) => {
   const imgHeight = height ?? size;
   const imgWidth = width ?? size;
 
+  if (onClick) {
+    return (
+      <Wrapper className={className} onClick={handleClickEvent(onClick)}>
+        <img
+          alt={alt}
+          style={{ width: imgWidth, height: imgHeight }}
+          src={img}
+        />
+      </Wrapper>
+    );
+  }
+
   return (
-    <Wrapper className={className} onClick={onClick}>
-      <img alt={alt} style={{ width: imgWidth, height: imgHeight }} src={img} />
-    </Wrapper>
+    <img
+      alt={alt}
+      className={className}
+      style={{ width: imgWidth, height: imgHeight }}
+      src={img}
+    />
   );
 };

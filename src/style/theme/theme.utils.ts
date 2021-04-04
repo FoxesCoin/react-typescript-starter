@@ -20,11 +20,10 @@ interface IFlexRow {
   gap?: number;
 }
 
-interface IFlex extends IFlexRow {
-  justify?: TFlex;
-  align?: TFlex;
-  isColumn?: boolean;
-}
+export const cssFullScreen = css`
+  width: 100%;
+  min-height: 100%;
+`;
 
 export const cssTextStyled = css<ITextStyled>`
   line-height: 1.25;
@@ -37,7 +36,7 @@ export const cssText = css<IText>`
   ${(props) => props.font && `font-family: ${FONTS[props.font]};`}
 `;
 
-export const cssFlexRow = css<IFlexRow>`
+export const cssFlexGap = css<IFlexRow>`
   ${(props) => props.justify && `justify-content: ${props.justify};`}
 
   > *+* {
@@ -45,8 +44,8 @@ export const cssFlexRow = css<IFlexRow>`
   }
 `;
 
-export const cssFlex = css<IFlex>`
-  ${(props) => props.justify && `justify-content: ${props.justify};`}
-  ${(props) => props.align && `align-items: ${props.align};`}
-  ${(props) => props.isColumn && 'flex-direction: column;'}
+export const cssAbsoluteCenter = css`
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 `;

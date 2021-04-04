@@ -32,15 +32,7 @@ const ImageItem = (props: IImageItemProps) => {
 };
 
 export const ImageSelector: TComponent<IImageSelectorProps> = (props) => {
-  const {
-    className,
-    items,
-    value,
-    size = 20,
-    children,
-    setValue,
-    ...image
-  } = props;
+  const { className, items, value, size = 20, setValue, ...image } = props;
   const imageStyled = { size, ...image };
 
   return (

@@ -1,9 +1,13 @@
 const updateArray = <T extends any>(array: T[], value: T, index: number) => {
-  if (index === -1) return [...array, value];
+  if (index === -1) {
+    return [...array, value];
+  }
+
   const clone = [...array];
   clone.splice(index, 1);
   return clone;
 };
+
 export const updateSimpleArray = <T extends TSimple>(
   array: T[],
   value: T
