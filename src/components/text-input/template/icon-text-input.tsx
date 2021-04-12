@@ -4,7 +4,7 @@ import { IInputWrapperProps, InputWrapper, TemplateTexInput } from '../component
 import { IconWrapper } from '../components/icon-wrapper';
 
 import {
-    getInputIconDimension, getInputParameters, getSize, getWrapperProps
+    getInputIconDimension, getInputParameters, getPositionSize, getWrapperProps
 } from '../text-input.utils';
 
 import { TComponent } from 'typings/react';
@@ -13,7 +13,7 @@ import { IIconWrapper, IIconWrapperStyled, IInputParameters } from '../text-inpu
 type TProps = IInputWrapperProps & IInputParameters & IIconWrapper;
 
 const InputField = styled(TemplateTexInput)<IIconWrapperStyled>`
-  ${(props) => `padding-${getSize('0.5rem')(props)}`};
+  ${(props) => `padding-${getPositionSize('0.5rem')(props)}`};
 `;
 
 export const IconTextInput: TComponent<TProps> = (props) => {

@@ -17,7 +17,7 @@ export const useRequest = () => {
     }
   };
 
-  return { errorMessage, isLoading, sendRequest, setErrorMessage };
+  return { errorMessage, isLoading, sendRequest };
 };
 
 export const useFetch = <T extends any>(

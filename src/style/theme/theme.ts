@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { cssFlexGap, cssFullScreen, cssText, cssTextStyled } from './theme.utils';
+import { cssFlexRow, cssFullScreen, cssText, cssTextStyled } from './theme.utils';
 
 const FlexCenter = styled.div`
   display: flex;
@@ -25,7 +25,7 @@ export const Theme = {
   GapRow: styled.div`
     display: flex;
     align-items: center;
-    ${cssFlexGap}
+    ${cssFlexRow}
   `,
   FlexRow: styled.div`
     display: flex;

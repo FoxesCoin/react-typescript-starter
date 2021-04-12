@@ -1,4 +1,4 @@
-import { deepCopy, deepUpdateObject } from '../utils/object';
+import { deepClone } from '../utils/object';
 
 const SIMPLE_OBJECT = {
   a: 'value',
@@ -79,54 +79,22 @@ const DEEP_OBJECT_WITH_DEEP_ARRAY = {
 };
 
 test('cloneObject. Test many variation with clone object.', () => {
-  expect(deepCopy(PRIMITIVE_OBJECT)).toEqual(PRIMITIVE_OBJECT);
-  expect(deepCopy(SIMPLE_OBJECT)).toEqual(SIMPLE_OBJECT);
-  expect(deepCopy(SIMPLE_OBJECT_WITH_PRIMITIVE_ARRAY)).toEqual(
+  expect(deepClone(PRIMITIVE_OBJECT)).toEqual(PRIMITIVE_OBJECT);
+  expect(deepClone(SIMPLE_OBJECT)).toEqual(SIMPLE_OBJECT);
+  expect(deepClone(SIMPLE_OBJECT_WITH_PRIMITIVE_ARRAY)).toEqual(
     SIMPLE_OBJECT_WITH_PRIMITIVE_ARRAY
   );
-  expect(deepCopy(DEEP_OBJECT)).toEqual(DEEP_OBJECT);
-  expect(deepCopy(DEEP_OBJECT_WITH_DEEP_ARRAY)).toEqual(
+  expect(deepClone(DEEP_OBJECT)).toEqual(DEEP_OBJECT);
+  expect(deepClone(DEEP_OBJECT_WITH_DEEP_ARRAY)).toEqual(
     DEEP_OBJECT_WITH_DEEP_ARRAY
   );
-  expect(deepCopy(SIMPLE_OBJECT_WITH_PRIMITIVE_ARRAY_AND_FUNCTION)).toEqual(
+  expect(deepClone(SIMPLE_OBJECT_WITH_PRIMITIVE_ARRAY_AND_FUNCTION)).toEqual(
     SIMPLE_OBJECT_WITH_PRIMITIVE_ARRAY_AND_FUNCTION
   );
-  expect(deepCopy(PRIMITIVE_OBJECT_WITH_FUNCTION)).toEqual(
+  expect(deepClone(PRIMITIVE_OBJECT_WITH_FUNCTION)).toEqual(
     PRIMITIVE_OBJECT_WITH_FUNCTION
   );
-  expect(deepCopy(PRIMITIVE_OBJECT_WITH_FUNCTION_AND_ARRAY)).toEqual(
+  expect(deepClone(PRIMITIVE_OBJECT_WITH_FUNCTION_AND_ARRAY)).toEqual(
     PRIMITIVE_OBJECT_WITH_FUNCTION_AND_ARRAY
-  );
-});
-
-const DEEP_OBJECT_FROM_UPDATE = {
-  a: {
-    a: { c: 'Test', d: 'Test', e: 'Test' },
-    b: { c: 'Test', d: 'Test', e: 'Test' },
-    c: { c: 'Test', d: 'Test', e: 'Test' },
-    d: { c: 'Test', d: 'Test', e: 'Test' },
-  },
-};
-
-const UPDATE_VALUE: DeepPartial<typeof DEEP_OBJECT_FROM_UPDATE> = {
-  a: {
-    a: {
-      c: 'New Value',
-    },
-  },
-};
-
-const DEEP_OBJECT_AFTER_UPDATE = {
-  a: {
-    a: { c: 'New Value', d: 'Test', e: 'Test' },
-    b: { c: 'Test', d: 'Test', e: 'Test' },
-    c: { c: 'Test', d: 'Test', e: 'Test' },
-    d: { c: 'Test', d: 'Test', e: 'Test' },
-  },
-};
-
-test('Deep update object.', () => {
-  expect(deepUpdateObject(DEEP_OBJECT_FROM_UPDATE, UPDATE_VALUE)).toEqual(
-    DEEP_OBJECT_AFTER_UPDATE
   );
 });

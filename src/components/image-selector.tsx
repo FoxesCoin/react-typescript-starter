@@ -1,5 +1,5 @@
-import { Picture, TPicture } from '../../picture';
-import { Selector } from '../selector';
+import { Picture, TPicture } from './picture';
+import { Selector } from './selector/selector';
 
 import { TComponent } from 'typings/react';
 

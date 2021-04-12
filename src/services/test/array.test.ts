@@ -1,4 +1,4 @@
-import { updateObjectArray, updateSimpleArray } from 'services/utils';
+import { toggleItemInObjectArray, toggleItemInSimpleArray } from 'services/utils';
 
 interface IItem {
   value: string;
@@ -28,17 +28,20 @@ const ITEM_ARRAY: IItem[] = [
   },
 ];
 
-test('Update primitive type array', () => {
-  expect(updateSimpleArray(SIMPLE_ARRAY, 'a')).toEqual(['b', 'c']);
-  expect(updateSimpleArray(SIMPLE_ARRAY, 'd')).toEqual([...SIMPLE_ARRAY, 'd']);
+test('Toggle primitive type array', () => {
+  expect(toggleItemInSimpleArray(SIMPLE_ARRAY, 'a')).toEqual(['b', 'c']);
+  expect(toggleItemInSimpleArray(SIMPLE_ARRAY, 'd')).toEqual([
+    ...SIMPLE_ARRAY,
+    'd',
+  ]);
 });
 
-test('Update object type array', () => {
-  expect(updateObjectArray(ITEM_ARRAY, NEW_ITEM, 'label')).toEqual([
+test('Toggle object type array', () => {
+  expect(toggleItemInObjectArray(ITEM_ARRAY, NEW_ITEM, 'label')).toEqual([
     ...ITEM_ARRAY,
     NEW_ITEM,
   ]);
-  expect(updateObjectArray(ITEM_ARRAY, OLD_ITEM, 'label')).toEqual([
+  expect(toggleItemInObjectArray(ITEM_ARRAY, OLD_ITEM, 'label')).toEqual([
     OLD_ITEM,
     ITEM_ARRAY[2],
     ITEM_ARRAY[3],

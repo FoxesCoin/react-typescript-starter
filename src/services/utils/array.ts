@@ -1,4 +1,10 @@
-const updateArray = <T extends any>(array: T[], value: T, index: number) => {
+import { deepClone, getObjectEntries } from './object';
+
+const toggleItemInArray = <T extends any>(
+  array: T[],
+  value: T,
+  index: number
+) => {
   if (index === -1) {
     return [...array, value];
   }
@@ -8,19 +14,39 @@ const updateArray = <T extends any>(array: T[], value: T, index: number) => {
   return clone;
 };
 
-export const updateSimpleArray = <T extends TSimple>(
+export const toggleItemInSimpleArray = <T extends TSimple>(
   array: T[],
   value: T
 ): T[] => {
   const index = array.indexOf(value);
-  return updateArray(array, value, index);
+  return toggleItemInArray(array, value, index);
 };
 
-export const updateObjectArray = <T extends {}>(
+export const toggleItemInObjectArray = <T extends {}>(
   array: T[],
   value: T,
   key: keyof T
 ): T[] => {
   const index = array.findIndex((item) => item[key] === value[key]);
-  return updateArray(array, value, index);
+  return toggleItemInArray(array, value, index);
+};
+
+export const updateObjectArray = <T extends {}>(parameters: {
+  array: T[];
+  newValues: Partial<T>;
+  search: Partial<T>;
+}): T[] => {
+  const { array, newValues, search } = parameters;
+  const index = array.findIndex((item) =>
+    getObjectEntries(search).every(([key, value]) => item[key] === value)
+  );
+
+  if (index === -1) {
+    return array;
+  }
+
+  const clone = deepClone(array);
+  clone[index] = { ...clone[index], ...newValues };
+
+  return clone;
 };

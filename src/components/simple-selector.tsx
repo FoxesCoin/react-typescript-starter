@@ -1,4 +1,4 @@
-import { Selector } from '../selector';
+import { Selector } from './selector/selector';
 
 import { IComponent } from 'typings/react';
 

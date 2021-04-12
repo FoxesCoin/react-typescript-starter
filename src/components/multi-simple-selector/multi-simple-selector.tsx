@@ -1,4 +1,4 @@
-import { Selector } from '../../selector';
+import { Selector } from '../selector/selector';
 import { SelectorItem } from './selector-item';
 
 interface IMultiSimpleSelectorProps<T extends TSimple> {

@@ -10,7 +10,9 @@ import {
 export const getPosition = (props: IIconWrapperStyled) =>
   props.isRight ? 'right' : 'left';
 
-export const getSize = (padding: string) => (props: IIconWrapperStyled) => {
+export const getPositionSize = (padding: string) => (
+  props: IIconWrapperStyled
+) => {
   const position = getPosition(props);
   const space = props.width || props.size;
   return `${position}: calc(${space}px + ${padding});`;
