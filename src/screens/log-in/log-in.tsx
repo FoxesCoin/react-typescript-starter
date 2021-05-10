@@ -1,25 +1,20 @@
-import { SimpleSelector } from 'components/selector';
-import { TextInput } from 'components/text-input';
-import React, { FC, useState } from 'react';
+import { Link } from 'react-router-dom';
 
-interface ILogInProps {
-  className?: string;
-}
+import { ROUTES } from 'constants/router';
 
-export const LogIn: FC<ILogInProps> = (props) => {
+import { TComponent } from 'typings/react';
+
+import { Theme } from 'style/theme';
+
+export const LogIn: TComponent = (props) => {
   const { className } = props;
 
-  const [data, setData] = useState('');
-
   return (
-    <div className={className}>
-      <SimpleSelector
-        items={['First', 'Second', 'Third']}
-        value={data}
-        setValue={setData}
-        placeholder="TEXT"
-      />
-      <TextInput title="Title" error value={data} setValue={setData} />
-    </div>
+    <Theme.FullScreenCenter style={{ gap: 24 }} className={className}>
+      <Link to={ROUTES.BUTTON}>Button</Link>
+      <Link to={ROUTES.INPUT}>Input</Link>
+      <Link to={ROUTES.SELECTOR}>Selector</Link>
+      <Link to={ROUTES.CHECKBOX}>Checkbox</Link>
+    </Theme.FullScreenCenter>
   );
 };

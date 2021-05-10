@@ -1,29 +1,10 @@
-import React from 'react';
+import { SelectorHeader, SelectorItem, SelectorMenu } from './components';
+import { ISelectorProps, SelectorProvider } from './selector.context';
 
-import {
-  SelectorHeader,
-  SelectorItem,
-  SelectorMenu,
-  ISelectorHeaderProps,
-} from './components';
-import { SelectorContext, ISelectorParameters } from './selector.context';
+export const Selector = (props: ISelectorProps) => (
+  <SelectorProvider {...props} />
+);
 
-import { TComponent } from 'typings/react';
-
-interface ISelector extends ISelectorParameters, ISelectorHeaderProps {
-  items: ISelectorValue[];
-}
-
-export const Selector: TComponent<ISelector> = (props) => {
-  const { items, children, placeholder, ...selector } = props;
-  return (
-    <SelectorContext {...selector}>
-      <SelectorHeader placeholder={placeholder} />
-      <SelectorMenu>
-        {items.map((item) => (
-          <SelectorItem value={item} key={item.label} />
-        ))}
-      </SelectorMenu>
-    </SelectorContext>
-  );
-};
+Selector.Item = SelectorItem;
+Selector.Header = SelectorHeader;
+Selector.Menu = SelectorMenu;

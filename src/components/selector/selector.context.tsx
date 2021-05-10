@@ -1,11 +1,12 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, ReactNode, useContext, useState } from 'react';
 import styled from 'styled-components';
-import { TWrapper } from 'typings/react';
+
+import { useOutsideAlerter } from 'services/hooks';
 
 export interface ISelectorParameters {
-  value: ISelectorValue;
+  value: any;
 
-  setValue: (value: ISelectorValue) => void;
+  setValue: (value: any) => void;
 }
 
 interface ISelectorContext extends ISelectorParameters {
@@ -14,12 +15,22 @@ interface ISelectorContext extends ISelectorParameters {
   setOpen: (isOpen: boolean) => void;
 }
 
+export interface ISelectorProps extends ISelectorParameters {
+  children: ReactNode;
+
+  className?: string;
+}
+
 const INIT_VALUE: ISelectorContext = {
   isOpen: false,
   value: { label: '' },
 
-  setOpen: () => {},
-  setValue: () => {},
+  setOpen: () => {
+    return;
+  },
+  setValue: () => {
+    return;
+  },
 };
 
 const Context = createContext(INIT_VALUE);
@@ -29,13 +40,19 @@ const Wrapper = styled.div`
 
 export const useSelectorContext = () => useContext(Context);
 
-export const SelectorContext: TWrapper<ISelectorParameters> = (parameters) => {
+export const SelectorProvider = (parameters: ISelectorProps) => {
   const { children, className, ...context } = parameters;
   const [isOpen, setOpen] = useState(false);
+  const closeSelector = () => {
+    setOpen(false);
+  };
+  const ref = useOutsideAlerter<HTMLDivElement>(closeSelector);
 
   return (
     <Context.Provider value={{ isOpen, setOpen, ...context }}>
-      <Wrapper className={className}>{children}</Wrapper>
+      <Wrapper ref={ref} className={className}>
+        {children}
+      </Wrapper>
     </Context.Provider>
   );
 };
