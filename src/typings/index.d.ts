@@ -5,6 +5,7 @@ interface IImageSize {
 }
 
 type TSimple = string | number;
+type TInputType = 'email' | 'password';
 
 type DeepPartial<T> = {
   [P in keyof T]?: DeepPartial<T[P]>;

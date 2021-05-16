@@ -10,7 +10,6 @@ html,
 #root {
 	min-height: 100vh;
 	width: 100%;
-  overflow: hidden;
 }
 
 #root {
@@ -20,10 +19,61 @@ html,
 }
 
 *, *::before, *::after {
-  box-sizing: border-box;
-  font-size: inherit;
-  font-family: inherit;
-  color: inherit;
+  box-sizing: border-box;    
+  min-width: 0;
+  min-height: 0;
+}
+
+input,
+button,
+label {
+  outline: unset; 
+  border: none;
+
+  &:hover {
+    outline: none;
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+input[type='range'] {
+  &::-moz-range-thumb {
+    border: none;
+    outline: none;
+  }
+  &::-moz-range-progress {
+    border: none;
+  }
+  &::-moz-range-track {
+    border: none;
+  }
+}
+
+button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: max-content;
+  background-color: transparent;
+}
+
+a {
+  text-decoration: unset;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+  -moz-appearance: textfield;
 }
 
 ${Object.values(FONTS).map((font) => importFont(font))}

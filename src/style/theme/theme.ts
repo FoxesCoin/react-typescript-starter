@@ -1,42 +1,87 @@
 import styled from 'styled-components';
 
-import { cssFlexRow, cssFullScreen, cssText, cssTextStyled } from './theme.utils';
-
-const FlexCenter = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-`;
+import { cssFlexCenter, cssFullSize, cssGap, cssText, ITypographyStyled } from './theme.preset';
 
 export const Theme = {
-  Paragraph: styled.p`
+  Paragraph: styled.p<ITypographyStyled>`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
     ${cssText}
   `,
-  Text: styled.span`
+  Text: styled.span<ITypographyStyled>`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
     ${cssText}
   `,
-  Title: styled.p`
+  UpperText: styled.span<ITypographyStyled>`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    ${cssText}
+    text-transform: uppercase;
+  `,
+  Title: styled.p<ITypographyStyled>`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    ${cssText}
     text-align: center;
     width: 100%;
-    ${cssTextStyled}
   `,
-
-  GapRow: styled.div`
-    display: flex;
-    align-items: center;
-    ${cssFlexRow}
+  FullScreenCenter: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    ${cssFlexCenter}
+    ${cssFullSize}
+    flex-direction: column;
   `,
-  FlexRow: styled.div`
+  FlexLine: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
     display: flex;
     align-items: center;
     justify-content: space-between;
   `,
-  FlexCenter,
-  FullScreen: styled.div`
-    ${cssFullScreen}
+  FlexColumn: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
   `,
-  FullScreenCenter: styled(FlexCenter)`
-    ${cssFullScreen}
+  GapRow: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    ${cssGap}
+    display: flex;
+    align-items: center;
+  `,
+  GapColumn: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    ${cssGap}
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  `,
+  FlexCenter: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    ${cssFlexCenter}
+  `,
+  FlexColumnCenter: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    ${cssFlexCenter}
+    flex-direction: column;
+  `,
+  FullScreen: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    ${cssFullSize}
+  `,
+  GridColumn: styled.div<{ gap?: number }>`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    display: grid;
+    gap: ${(props) => props.gap ?? 8}px;
+    grid-auto-rows: max-content;
+    justify-items: center;
+    align-items: center;
+  `,
+  ToggleContent: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    overflow: hidden;
+    transition: all 0.5s;
+  `,
+  AllSpace: styled.div`
+    ${(props) => (props.onClick ? 'cursor: pointer;' : '')}
+    width: 100%;
+    height: 100%;
   `,
 };

@@ -1,10 +1,16 @@
-import { createContext, ReactNode, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import styled from 'styled-components';
 
-import { useOutsideAlerter } from 'services/hooks';
+import { useOutsideCall } from 'services/hooks';
+
+import { SelectorTheme, TSelectorTheme } from './selector.constants';
+
+import { TWrapper } from 'typings/react';
 
 export interface ISelectorParameters {
   value: any;
+  disabled?: boolean;
+  styled?: TSelectorTheme;
 
   setValue: (value: any) => void;
 }
@@ -15,15 +21,10 @@ interface ISelectorContext extends ISelectorParameters {
   setOpen: (isOpen: boolean) => void;
 }
 
-export interface ISelectorProps extends ISelectorParameters {
-  children: ReactNode;
-
-  className?: string;
-}
-
 const INIT_VALUE: ISelectorContext = {
   isOpen: false,
-  value: { label: '' },
+  value: '',
+  disabled: false,
 
   setOpen: () => {
     return;
@@ -34,23 +35,35 @@ const INIT_VALUE: ISelectorContext = {
 };
 
 const Context = createContext(INIT_VALUE);
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ styled?: TSelectorTheme; disabled?: boolean }>`
   position: relative;
+  ${(props) => (props.styled ? SelectorTheme[props.styled] : '')}
 `;
 
-export const useSelectorContext = () => useContext(Context);
+export const useSelectorContext = (): ISelectorContext => useContext(Context);
 
-export const SelectorProvider = (parameters: ISelectorProps) => {
-  const { children, className, ...context } = parameters;
+export const SelectorContext: TWrapper<ISelectorParameters> = (parameters) => {
+  const {
+    children,
+    className,
+    disabled,
+    styled: theme,
+    ...context
+  } = parameters;
   const [isOpen, setOpen] = useState(false);
   const closeSelector = () => {
     setOpen(false);
   };
-  const ref = useOutsideAlerter<HTMLDivElement>(closeSelector);
+  const ref = useOutsideCall<HTMLDivElement>(closeSelector);
 
   return (
-    <Context.Provider value={{ isOpen, setOpen, ...context }}>
-      <Wrapper ref={ref} className={className}>
+    <Context.Provider value={{ isOpen, disabled, setOpen, ...context }}>
+      <Wrapper
+        ref={ref}
+        styled={theme}
+        disabled={disabled}
+        className={className}
+      >
         {children}
       </Wrapper>
     </Context.Provider>

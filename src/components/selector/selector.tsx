@@ -1,10 +1,20 @@
 import { SelectorHeader, SelectorItem, SelectorMenu } from './components';
-import { ISelectorProps, SelectorProvider } from './selector.context';
+import { ISelectorParameters, SelectorContext } from './selector.context';
 
-export const Selector = (props: ISelectorProps) => (
-  <SelectorProvider {...props} />
-);
+import { IReactWrapper } from 'typings/react';
 
-Selector.Item = SelectorItem;
+interface IProps extends IReactWrapper, ISelectorParameters {}
+
+export const Selector = (props: IProps) => {
+  const { className, children, ...context } = props;
+
+  return (
+    <SelectorContext className={className} {...context}>
+      {children}
+    </SelectorContext>
+  );
+};
+
 Selector.Header = SelectorHeader;
+Selector.Item = SelectorItem;
 Selector.Menu = SelectorMenu;

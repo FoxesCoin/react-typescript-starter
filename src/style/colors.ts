@@ -10,6 +10,9 @@ export const COLORS = <const>{
 
   lightGray: '#c8d3d5',
 
+  opacityOnyx: 'rgba(59, 59, 60, 0.7)',
+
+  spanishGray: '#999',
   dimGray: '#656C6E',
 
   steelTeal: '#6e8387',

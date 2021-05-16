@@ -7,7 +7,7 @@ export const getObjectKeys = <T extends {}, K extends keyof T>(object: T) =>
 export const getObjectEntries = <T extends {}, K extends keyof T>(object: T) =>
   Object.entries(object) as [K, T[K]][];
 
-export const deepClone = <T extends any>(object: T): T => {
+export const deepCopy = <T extends any>(object: T): T => {
   if (null === object || object === undefined || 'object' !== typeof object) {
     return object;
   }
@@ -17,13 +17,13 @@ export const deepClone = <T extends any>(object: T): T => {
   }
 
   if (object instanceof Array) {
-    return object.map(deepClone) as T;
+    return object.map(deepCopy) as T;
   }
 
   if (object instanceof Object) {
     const copy = {} as any;
     getObjectKeys(object).forEach((key) => {
-      copy[key] = deepClone(object[key]);
+      copy[key] = deepCopy(object[key]);
     });
     return copy;
   }

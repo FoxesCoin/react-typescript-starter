@@ -1,4 +1,4 @@
-import { ChangeEventHandler, MouseEventHandler } from 'react';
+import { ChangeEvent, ChangeEventHandler, MouseEventHandler } from 'react';
 
 export const handleClickEvent = <T extends HTMLElement>(
   callback?: () => void
@@ -15,8 +15,21 @@ export const handleChangeEvent = <
   E extends HTMLInputElement | HTMLTextAreaElement,
   V extends any
 >(
-  onChange: (value: V) => void
+  onChange?: (value: V) => void
 ): ChangeEventHandler<E> => (event) => {
   const value = event.target.value as V;
-  onChange(value);
+  if (onChange) {
+    onChange(value);
+  }
+};
+
+export const handleFileChange = (setFile: (file: File) => void) => (
+  event: ChangeEvent<HTMLInputElement>
+) => {
+  const { files } = event.target;
+  if (!files) {
+    return;
+  }
+
+  setFile(files[0]);
 };
