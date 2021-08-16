@@ -1,3 +1,5 @@
 export const Z_INDEX = {
+  OVERLAY_MODAL: 5000,
   SELECTOR: 100,
+  INPUT_FIELD: 50,
 };

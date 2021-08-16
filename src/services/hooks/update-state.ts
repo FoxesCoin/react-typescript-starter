@@ -1,5 +1,9 @@
 import { useState } from 'react';
 
+export type TUpdateField<T extends object> = <F extends keyof T>(
+  field: F
+) => (value: T[F]) => void;
+
 export const useUpdateState = <T extends object>(init: T) => {
   const [state, setState] = useState<T>(init);
 
@@ -10,12 +14,14 @@ export const useUpdateState = <T extends object>(init: T) => {
     }));
   };
 
-  const updateField = <F extends keyof T>(field: F) => (value: T[F]) =>
+  const updateField: TUpdateField<T> = (field) => (value) =>
     updateState({ [field]: value } as any);
 
-  const updateFieldCallback = <F extends keyof T>(field: F) => (
-    value: T[F]
-  ) => () => updateState({ [field]: value } as any);
+  const updateFieldCallback =
+    <F extends keyof T>(field: F) =>
+    (value: T[F]) =>
+    () =>
+      updateState({ [field]: value } as any);
 
   return { state, updateState, updateField, updateFieldCallback };
 };

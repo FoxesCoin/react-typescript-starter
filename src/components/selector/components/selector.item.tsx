@@ -1,34 +1,38 @@
+import { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import { useSelectorContext } from '../selector.context';
 
-import { handleClickEvent } from 'services/utils';
+import { COLORS } from 'style/colors';
 
-import { TWrapper } from 'typings/react';
+import { TContainer } from 'typings/react';
+
+import { Theme } from 'style/theme';
 
 interface ISelectorItemProps {
   value: any;
-  isSelected: boolean;
+
+  render?: (isSelected: boolean) => ReactNode;
 }
 
-const Item = styled.div`
-  padding: 0.25rem 0.5rem;
-  line-height: 1.25;
-  cursor: pointer;
+const Item = styled(Theme.FlexCenter)`
+  color: ${COLORS.spanishGray};
 `;
 
-export const SelectorItem: TWrapper<ISelectorItemProps> = (props) => {
-  const { value, className, children } = props;
-  const { setValue, setOpen } = useSelectorContext();
+export const SelectorItem: TContainer<ISelectorItemProps> = (props) => {
+  const { value, className, children, render } = props;
+  const { setValue, setOpen, value: selectValue } = useSelectorContext();
 
-  const handleClick = handleClickEvent(() => {
+  const isSelected = selectValue === value;
+
+  const handleClick = () => {
     setOpen(false);
     setValue(value);
-  });
+  };
 
   return (
     <Item className={className} onClick={handleClick}>
-      {children}
+      {children ? children : render ? render(isSelected) : value}
     </Item>
   );
 };
